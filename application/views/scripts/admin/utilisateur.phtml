@@ -1,0 +1,21 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_admin.phtml'); ?>
+<div id="contenu">
+	<fieldset><legend>Gestion des utilisateurs</legend>
+		<table class="admin" border="0" cellspacing="0" cellpadding="10">
+			<tr>
+				<th>Login</th>
+				<th>E-mail</th>
+				<th>Supprimer</th>
+			</tr>
+			<?php foreach( $this->utilisateur as $utilisateur) : ?>
+			<tr class="ligne_item">
+				<td><?php echo $this->escape($utilisateur->login_utilisateur); ?></td>
+				<td class="case"><?php echo $this->escape($utilisateur->mail_utilisateur); ?></td>
+				<td class="case"><a href="<?php echo $this->baseUrl ;?>/admin/supprimerutilisateur/id/<?php echo $utilisateur->id_utilisateur ;?>"><img src="<?php echo $this->baseUrl; ?>/public/images/cross.png" alt="Supprimer" /></a></td>
+			</tr>
+			<?php endforeach; ?>
+		</table>
+	</fieldset>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

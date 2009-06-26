@@ -1,0 +1,51 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_avatar.phtml'); ?>
+<!-- <?php// echo $this->render('menu_right_combat.phtml'); ?> -->
+<?php echo $this->render('menu_right.phtml'); ?>
+<div id="contenu">
+	<fieldset><legend>Monstre</legend>
+		<div class="illustration">
+			<img src="<?php echo $this->baseUrl;?>/public/images/illustrations/monstre/<?php echo $this->monstre->id_monstre;?>.png" alt=""/>
+		</div>
+	</fieldset>
+	<div class="choix" id="action_combat">
+		<fieldset><legend>Combat</legend>
+			<div id="stat_monstre">
+				<p><span id="monstre_nom"><?php echo $this->monstre->nom_monstre ;?></span>
+				<span id="monstre_hp">HP : <?php echo $this->monstre_->hp_monstre ;?> / <?php echo $this->monstre->hp_monstre ;?></span>
+				<span id="monstre_desc"><?php echo $this->monstre->description_monstre ;?></span>
+				</p>
+			</div>
+			<div id="combat">
+			<?php if(!$this->fin_combat) :?>
+				<div id="action"><span>Actions :</span>
+					<ul>
+						<li><a href="<?php echo $this->baseUrl; ?>/jeu/attaquer/id/<?php echo $this->avatar->id_avatar; ?>">Attaquer</a></li>
+						<li><a href="<?php echo $this->baseUrl; ?>/jeu/defendre/id/<?php echo $this->avatar->id_avatar; ?>">D&eacute;fendre</a></li>
+						<li><a href="<?php echo $this->baseUrl; ?>/jeu/fuir/id/<?php echo $this->avatar->id_avatar; ?>">Fuir</a></li>
+					</ul>
+				</div>
+				<div id="competences"><span>Comp&eacute;tences :</span>
+					<ul>
+						<li>Coup de Bouclier</li>
+						<li>Contre Attaque</li>
+						<li>Carapace</li>
+					</ul>
+				</div>
+				<?php if($this->monstre_->round > 0) : ?>
+				<div id="etat_combat">
+					Vos dégâts : <?php echo $this->escape($this->monstre_->degat_avatar);?><br />
+					Dégâts de l'ennemi : <?php echo $this->escape($this->monstre_->degat_monstre);?><br />
+				</div>
+				<?php endif;?>
+			</div>
+			<?php else : ?>
+				<div>VICTOIRE!</div>
+				<form id="fnav" method="post" action="<?php echo $this->baseUrl; ?>/jeu/navigation/id/<?php echo $this->escape($this->avatar->id_avatar); ?>">
+					<input type="submit" name="retnav" value="Retour à la navigation" />
+				</form>
+			<?php endif; ?>
+		</fieldset>
+	</div>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

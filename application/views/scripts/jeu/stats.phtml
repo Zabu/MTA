@@ -1,0 +1,67 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_avatar.phtml'); ?>
+<?php echo $this->render('menu_right.phtml'); ?>
+<div id="contenu" class="contenu_navigation">
+	<fieldset><legend>Actions</legend>
+		<form id="fnav" method="post" 
+		action="<?php echo $this->baseUrl; ?>/jeu/navigation/id/<?php echo $this->escape($this->avatar->id_avatar); ?>">
+			<input type="submit" name="retnav" value="Retour à la navigation" />
+		</form>
+	</fieldset>
+
+	<fieldset><legend>Status</legend>
+		<table class="avatar_stat" cellspacing="3px">
+			<tr>
+				<td>Nom :</td>
+				<td id="nom"><?php echo $this->avatar->nom_avatar;?></td>
+			</tr>
+			<tr>
+				<td>Classe :</td>
+				<td><?php echo $this->classe; ?></td>
+			</tr>
+			<tr>
+				<td>Niveau :</td>
+				<td><?php echo $this->avatar->id_niveau;?></td>
+			</tr>
+			<tr class="stat">
+				<td>HP :</td>
+				<td><?php echo $this->avatar->hp_avatar; ?>&nbsp;/&nbsp;<?php echo $this->avatar->hpmax_avatar; ?></td>
+			</tr>
+			<tr class="stat">
+				<td>MP :</td>
+				<td><?php echo $this->avatar->mp_avatar;?>&nbsp;/&nbsp;<?php echo $this->avatar->mpmax_avatar; ?></td>
+			</tr>
+			<tr class="stat">
+				<td>Expérience :</td>
+				<td><?php echo $this->avatar->exp_avatar; ?>&nbsp;/&nbsp;<?php echo $this->escape($this->niveau->getNextLvlExp($this->avatar->id_niveau));?></td>
+			</tr>
+			<tr class="stat">
+				<td>Pièces d'or :</td>
+				<td><?php echo $this->avatar->or_avatar;?></td>
+			</tr>
+			<tr class="stat">
+				<td>Attaque :</td>
+				<td><?php echo $this->avatar->att_avatar; if($this->bonus_att > 0) echo ' + '.$this->bonus_att;?></td>
+			</tr>
+			<tr class="stat">
+				<td>Attaque spéciale :</td>
+				<td><?php echo $this->avatar->attsp_avatar; if($this->bonus_attS > 0) echo ' + '.$this->bonus_attS; ?></td>
+			</tr>
+			<tr class="stat">
+				<td>Défense :</td>
+				<td><?php echo $this->avatar->def_avatar; if($this->bonus_def > 0) echo ' + '.$this->bonus_def;?></td>
+			</tr>
+			<tr class="stat">
+				<td>Défense spéciale :</td>
+				<td><?php echo $this->avatar->defsp_avatar; if($this->bonus_defS > 0) echo ' + '.$this->bonus_defS;?></td>
+			</tr>
+			<tr class="stat">
+				<td>Vitesse :</td>
+				<td><?php echo $this->avatar->vit_avatar;?></td>
+			</tr>
+		</table>
+	</fieldset>
+	<fieldset><legend>Compétences</legend>
+	</fieldset>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

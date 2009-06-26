@@ -1,0 +1,36 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_admin.phtml'); ?>
+<div id="contenu">
+	<fieldset><legend>Gestion du monstre : <?php echo $this->monstre->nom_monstre; ?></legend>
+		<form action="<?php echo$this->baseUrl ;?>/admin/modifmonstre/id/<?php echo $this->monstre->id_monstre; ?>" method="post" accept-charset="utf-8">
+		<table class="admin" border="0" cellspacing="0" cellpadding="10">
+			<tr>
+				<th>Nom</th>
+				<th>Niv</th>
+				<th>Exp</th>
+				<th>HP</th>
+				<th>MP</th>
+				<th>Att</th>
+				<th>Attspe</th>
+				<th>Def</th>
+				<th>DefSpe</th>
+				<th>Vit</th>
+			</tr>
+			<tr>
+				<td><?php echo $this->escape($this->monstre->nom_monstre); ?></td>
+				<td><input type="text" name="niv" value="<?php echo $this->monstre->niv_monstre;      ?>" id="hp"></td>
+				<td><input type="text" name="exp" value="<?php echo $this->monstre->exp_monstre;      ?>" id="hp"></td>
+				<td><input type="text" name="hp" value="<?php echo $this->monstre->hp_monstre;      ?>" id="hp"></td>
+				<td><input type="text" name="mp" value="<?php echo $this->monstre->mp_monstre;      ?>" id="mp"></td>
+				<td><input type="text" name="att" value="<?php echo $this->monstre->att_monstre;    ?>" id="att"></td>
+				<td><input type="text" name="attspe" value="<?php echo $this->monstre->attsp_monstre; ?>" id="attspe"></td>
+				<td><input type="text" name="def" value="<?php echo $this->monstre->def_monstre;    ?>" id="def"></td>
+				<td><input type="text" name="defspe" value="<?php echo $this->monstre->defsp_monstre; ?>" id="defspe"></td>
+				<td><input type="text" name="vit" value="<?php echo $this->monstre->vit_monstre;    ?>" id="vit"></td>
+			</tr>
+		</table>
+		<br /><input type="submit" value="Mettre &agrave; jour &rarr;">
+		</form>
+	</fieldset>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

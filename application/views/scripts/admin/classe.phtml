@@ -1,0 +1,37 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_admin.phtml'); ?>
+<div id="contenu">
+	<fieldset><legend>Gestion des bonus des classes d'avatars</legend>
+		<table class="admin" border="0" cellspacing="0" cellpadding="10">
+			<tr>
+				<th>Nom</th>
+				<th>Att</th>
+				<th>Att Sp&eacute;</th>
+				<th>D&eacute;f</th>
+				<th>D&eacute;f Sp&eacute;</th>
+				<th>Vit</th>
+				<th>HP</th>
+				<th>MP</th>
+				<th>Modifier</th>
+			</tr>
+			<?php foreach( $this->classe as $classe) : ?>
+				<tr class="ligne_item" id="<?php echo $classe->id_classe ;?>">
+					<td><?php echo $classe->nom_classe; ?></td>
+					<td class="case"> <?php echo $classe->att_classe; ?> </td>
+					<td class="case"> <?php echo $classe->attsp_classe; ?> </td>
+					<td class="case"> <?php echo $classe->def_classe; ?> </td>
+					<td class="case"> <?php echo $classe->defsp_classe; ?> </td>
+					<td class="case"> <?php echo $classe->vit_classe; ?> </td>
+					<td class="case"> <?php echo $classe->hp_classe; ?> </td>
+					<td class="case"> <?php echo $classe->mp_classe; ?> </td>
+					<td class="case">
+						<a href="<?php echo $this->baseUrl ;?>/admin/modifclasse/id/<?php echo $classe->id_classe ;?>">
+							<img src="<?php echo $this->baseUrl ;?>/public/images/modif.png" alt="modifier la classe..." />
+						</a>
+					</td>
+				</tr>
+			<?php endforeach; ?>
+		</table>	
+	</fieldset>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

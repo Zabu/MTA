@@ -1,0 +1,52 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_admin.phtml'); ?>
+<div id="contenu">
+	<fieldset><legend>Gestion des monstres</legend>
+		<a href="<?php echo $this->baseUrl ;?>/admin/addmonstre">
+			<div class="bouton">Ajouter un monstre</div>
+		</a>
+		
+		<table class="admin" border="0" cellspacing="0" cellpadding="10">
+			<tr>
+				<th>Nom</th>
+				<th>XP</th>
+				<th>Niv</th>
+				<th>HP</th>
+				<th>MP</th>
+				<th>Att</th>
+				<th>AttS</th>
+				<th>Def</th>
+				<th>DefS</th>
+				<th>Vit</th>
+				<th>Modifier</th>
+				<th>Suppr.</th>
+			</tr>
+			<?php foreach( $this->monstre as $monstre) : ?>
+				<tr class="ligne_item" id="<?php echo $monstre->id_monstre ;?>">
+					<td><?php echo $monstre->nom_monstre; ?></td>
+					<td class="case"> <?php echo $monstre->exp_monstre; ?> </td>
+					<td class="case"> <?php echo $monstre->niv_monstre; ?> </td>
+					<td class="case"> <?php echo $monstre->hp_monstre; ?> </td>
+					<td class="case"> <?php echo $monstre->mp_monstre; ?> </td>
+					<td class="case"> <?php echo $monstre->att_monstre; ?> </td>
+					<td class="case"> <?php echo $monstre->attsp_monstre; ?> </td>
+					<td class="case"> <?php echo $monstre->def_monstre; ?> </td>
+					<td class="case"> <?php echo $monstre->defsp_monstre; ?> </td>
+					<td class="case"> <?php echo $monstre->vit_monstre; ?> </td>
+					<td class="case">
+						<a href="<?php echo $this->baseUrl ;?>/admin/modifmonstre/id/<?php echo $monstre->id_monstre ;?>">
+							<img src="<?php echo $this->baseUrl ;?>/public/images/modif.png" alt="modifier le monstre..." />
+						</a>
+					</td>
+					<td class="case">
+						<a href="<?php echo $this->baseUrl ;?>/admin/supprmonstre/id/<?php echo $monstre->id_monstre ;?>">
+							<img src="<?php echo $this->baseUrl ;?>/public/images/cross.png" alt="modifier le monstre..." />
+						</a>
+					</td>
+					
+				</tr>
+			<?php endforeach; ?>
+		</table>	
+	</fieldset>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

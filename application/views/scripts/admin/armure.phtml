@@ -1,0 +1,12 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_admin.phtml'); ?>
+
+	<div id="contenu">
+		<fieldset><legend>Gestion des armures</legend>
+		<?php foreach( $this->armure as $armure) : ?>
+		<?php echo $this->escape($armure->nom); ?>
+		<?php endforeach; ?>
+		</fieldset>
+	</div>
+
+<?php echo $this->render('footer.phtml'); ?>

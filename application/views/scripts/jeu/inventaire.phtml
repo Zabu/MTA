@@ -1,0 +1,122 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_avatar.phtml'); ?>
+<div id="contenu" class="contenu_navigation">
+	<fieldset><legend>Actions</legend>
+		<form id="fnav" method="post" action="<?php echo $this->baseUrl; ?>/jeu/navigation/id/<?php echo $this->escape($this->avatar->id_avatar); ?>">
+			<input type="submit" name="retnav" value="Retour à la navigation" />
+		</form>
+	</fieldset>
+	<fieldset><legend>Equipement</legend>
+		<div class="item">
+			<span class="arme">Arme : </span>
+			<?php if(isset($this->arme_->nom_objet)) :?>
+				<span class="nom"><?php echo $this->arme_->nom_objet; ?></span>
+				<blockquote><?php echo $this->arme_->description_objet; ?></blockquote>
+				<span class="item_stat">Statistiques :
+				<a href="<?php echo $this->baseUrl; ?>/jeu/unequiparme/id/<?php echo $this->avatar->id_avatar; ?>">Déséquiper</a>
+				<table>
+				<tr><td>Attaque :</td><td><?php echo $this->escape($this->equip->getAtt($this->arme_->id_objet)); ?></td></tr>
+				<tr><td>Attaque Spé :</td><td><?php echo $this->escape($this->equip->getAttS($this->arme_->id_objet)); ?></td></tr>
+				<tr><td>Défense :</td><td><?php echo $this->escape($this->equip->getDef($this->arme_->id_objet)); ?></td></tr>
+				<tr><td>Défense Spé :</td><td><?php echo $this->escape($this->equip->getDefS($this->arme_->id_objet)); ?></td></tr>
+				</table></span>
+			<?php else :?>
+				<?php echo 'Rien'?>
+			<?php endif; ?>
+		</div>
+		<div class="item">
+			<span class="arme">Armure : </span>
+			<?php if(isset($this->armure_->nom_objet)) :?>
+				<span class="nom"><?php echo $this->escape($this->armure_->nom_objet); ?></span>
+				<blockquote><?php echo $this->escape($this->armure_->description_objet); ?></blockquote>
+				<a href="<?php echo $this->baseUrl; ?>/jeu/unequiparmure/id/<?php echo $this->avatar->id_avatar; ?>">Déséquiper</a>
+				<span class="item_stat">Statistiques :
+				<table>
+				<tr><td>Attaque :</td><td><?php echo $this->escape($this->equip->getAtt($this->armure_->id_objet)); ?></td></tr>
+				<tr><td>Attaque Spé :</td><td><?php echo $this->escape($this->equip->getAttS($this->armure_->id_objet)); ?></td></tr>
+				<tr><td>Défense :</td><td><?php echo $this->escape($this->equip->getDef($this->armure_->id_objet)); ?></td></tr>
+				<tr><td>Défense Spé :</td><td><?php echo $this->escape($this->equip->getDefS($this->armure_->id_objet)); ?></td></tr>
+				</table></span>
+			<?php else :?>
+				<?php echo 'Rien'?>
+			<?php endif; ?>
+		</div>
+	</fieldset>
+	<fieldset><legend><span class="arme">Arme</span></legend>
+		<?php if (count($this->armes) > 0): ?>
+			<?php foreach($this->armes as $arme) :?>
+				<?php echo '<div class="item">
+				Nom : '. $this->objet->getName($arme->id_objet) . '
+				<blockquote>'.  $this->objet->getDescription($arme->id_objet) . '</blockquote>
+				Quantité : '.  $arme->quantite_ligne. '<br />';
+				if(isset($this->arme_->id_objet) && $this->arme_->id_objet == $arme->id_objet){
+					echo '<a href="'. $this->baseUrl .'/jeu/unequiparme/id/'. $this->avatar->id_avatar .'">Déséquiper</a>';
+				}
+				else{
+					echo '<a href="'. $this->baseUrl .'/jeu/equiparme/id/'. $this->avatar->id_avatar .'/arme/'. $arme->id_objet .'">Equiper</a>';
+				}				
+				echo '
+				Statistiques : 
+				<table>
+					<tr><td>Attaque :</td><td>'. $this->equip->getAtt($arme->id_objet) .'</td></tr>
+					<tr><td>Attaque Spé :</td><td>'. $this->equip->getAttS($arme->id_objet) .'</td></tr>
+					<tr><td>Défense :</td><td>'. $this->equip->getDef($arme->id_objet) .'</td></tr>
+					<tr><td>Défense Spé :</td><td>'. $this->equip->getDefS($arme->id_objet) .'</td></tr>
+				</table>';
+				
+				echo '</div>'; ?>
+			<?php endforeach; ?>
+		<?php else : ?>
+			Vous n'avez pas d'arme dans votre inventaire.
+		<?php endif; ?>
+	</fieldset>
+	<fieldset><legend>Armure</legend>
+		<?php if (count($this->armures) > 0): ?>
+			<?php foreach($this->armures as $armure) :?>
+				<?php echo '<div class="item">
+				Nom : '. $this->objet->getName($armure->id_objet) . '
+				<blockquote>'.  $this->objet->getDescription($armure->id_objet) . '</blockquote>
+				Quantité : '.  $armure->quantite_ligne. '<br />';
+				if(isset($this->armure_->id_objet) && $this->armure_->id_objet == $armure->id_objet){
+					echo '<a href="'. $this->baseUrl .'/jeu/unequiparmure/id/'. $this->avatar->id_avatar .'">Déséquiper</a>';
+				}
+				else{
+					echo '<a href="'. $this->baseUrl .'/jeu/equiparmure/id/'. $this->avatar->id_avatar .'/armure/'. $armure->id_objet .'">Equiper</a>';
+				}
+				echo '
+				
+				Statistiques : 
+				<table>
+					<tr><td>Attaque :</td><td>'. $this->equip->getAtt($armure->id_objet) .'</td></tr>
+					<tr><td>Attaque Spé :</td><td>'. $this->equip->getAttS($armure->id_objet) .'</td></tr>
+					<tr><td>Défense :</td><td>'. $this->equip->getDef($armure->id_objet) .'</td></tr>
+					<tr><td>Défense Spé :</td><td>'. $this->equip->getDefS($armure->id_objet) .'</td></tr>
+				</table>';
+				
+				echo '</div>'; ?>
+			<?php endforeach; ?>
+		<?php else : ?>
+			Vous n'avez pas d'armure dans votre inventaire.
+		<?php endif; ?>
+	</fieldset>
+	<fieldset><legend>Objet de soin</legend>
+		<?php if (count($this->soins) > 0): ?>
+			<?php foreach($this->soins as $soin) :?>
+				<?php echo '<div class="item">
+				Nom : '. $this->objet->getName($soin->id_objet) . '<br />
+				Description : '.  $this->objet->getDescription($soin->id_objet) . '<br />
+				Quantité : '.  $soin->quantite_ligne. '<br />
+				<a href="'. $this->baseUrl .'/jeu/useheal/id/'. $this->avatar->id_avatar . '/soin/'. $soin->id_objet .'">Utiliser</a>
+				Effets : <ul>';
+				if($this->objetSoin->getModHp($soin->id_objet))
+					echo '<li>HP : '.$this->objetSoin->getModHp($soin->id_objet). '</li>' ;
+				if($this->objetSoin->getModMp($soin->id_objet))
+					echo '<li>MP : '.$this->objetSoin->getModMp($soin->id_objet). '</li>';
+				echo '</ul></div>'; ?>
+			<?php endforeach; ?>
+		<?php else : ?>
+			Vous n'avez pas d'objet de soin dans votre inventaire.
+		<?php endif; ?>
+	</fieldset>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

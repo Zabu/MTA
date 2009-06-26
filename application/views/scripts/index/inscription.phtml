@@ -1,0 +1,28 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left.phtml'); ?>
+	    	<div id="contenu">
+				<form id="finscription" method="post" action="<?php echo $this->baseUrl ?>/index/<?php echo $this->action; ?>">
+					<fieldset><legend>Inscription</legend>
+						<table>
+							<tr><td>Login <span class="info">(entre 3 à 20 caractères)</span> : </td>
+								<td><input type="text" name="login" value="<?php if(isset($this->utiltmp['login'])) echo $this->escape($this->utiltmp['login']);?>" /> <?php if(isset($this->erreurs["login"])) echo $this->erreurs["login"]; ?></td>
+							</tr>
+							<tr><td>Mot de passe <span class="info">(entre 6 et 15 caractères)</span> : </td>
+								<td><input type="password" name="pass1" /> <?php if(isset($this->erreurs["pass1"])) echo $this->erreurs["pass1"]; ?></td>
+							</tr>
+							<tr><td>Confirmation mot de passe :</td>
+								<td><input type="password" name="pass2" /> <?php if(isset($this->erreurs["pass2"])) echo $this->erreurs["pass2"]; ?></td>
+							</tr>
+							<tr><td>Email <span class="info">(un email valide est nécessaire)</span> : </td>
+								<td><input type="text" name="mail1" value="<?php if(isset($this->utiltmp['mail1'])) echo $this->escape($this->utiltmp['mail1']);?>" /> <?php if(isset($this->erreurs["mail1"])) echo $this->erreurs["mail1"]; ?></td>
+							</tr>
+							<tr><td>Confirmation de l'email :</td>
+								<td><input type="text" name="mail2" /> <?php if(isset($this->erreurs["mail2"])) echo $this->erreurs["mail2"]; ?></td>
+							</tr>
+							<tr><td><input type="submit" name="submit" value="Valider" /></td>
+							</tr>
+						</table>
+					</fieldset>
+				</form>
+			</div>
+<?php echo $this->render('footer.phtml'); ?>

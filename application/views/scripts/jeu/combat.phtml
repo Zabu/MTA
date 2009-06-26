@@ -1,0 +1,81 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_avatar.phtml'); ?>
+<!-- <?php// echo $this->render('menu_right_combat.phtml'); ?> -->
+<?php echo $this->render('menu_right.phtml'); ?>
+<div id="contenu">
+	<fieldset><legend>Monstre</legend>
+		<div class="illustration">
+			<img src="<?php echo $this->baseUrl;?>/public/images/illustrations/monstre/<?php echo $this->monstre->id_monstre;?>.png" alt=""/>
+		</div>
+	</fieldset>
+	<div class="choix" id="action_combat">
+		<fieldset><legend>Combat</legend>
+			<div id="stat_monstre">
+				<p><span id="monstre_nom"><?php echo $this->monstre->nom_monstre ;?></span>
+				<span id="monstre_hp">HP : <?php echo $this->monstre_->hp_monstre ;?> / <?php echo $this->monstre->hp_monstre ;?></span>
+				<span id="monstre_desc"><?php echo $this->monstre->description_monstre ;?></span>
+				</p>
+			</div>
+			<div id="combat">
+			<?php if(!$this->fin_combat && !$this->fuite) :?>
+				<div id="action"><span>Actions :</span>
+					<ul>
+						<li><a href="<?php echo $this->baseUrl; ?>/jeu/attaquer/id/<?php echo $this->avatar->id_avatar; ?>">Attaquer</a></li>
+						<li><a href="<?php echo $this->baseUrl; ?>/jeu/defendre/id/<?php echo $this->avatar->id_avatar; ?>">D&eacute;fendre</a></li>
+						<li><a href="<?php echo $this->baseUrl; ?>/jeu/fuir/id/<?php echo $this->avatar->id_avatar; ?>">Fuir</a></li>
+					</ul>
+				</div>
+				<div id="competences"><span>Comp&eacute;tences :</span>
+					<ul>
+						<li>Coup de Bouclier</li>
+						<li>Contre Attaque</li>
+						<li>Carapace</li>
+					</ul>
+				</div>
+				<?php if($this->monstre_->round > 0) : ?>
+					<div id="etat_combat">
+						<?php if(empty($this->message_fuite)) :?>
+							Vos dégâts : <?php echo $this->escape($this->monstre_->degat_avatar);?><br />
+						<?php else : ?>
+							<?php echo $this->escape($this->message_fuite); ?><br />
+						<?php endif; ?>
+						Dégâts de l'ennemi : <?php echo $this->escape($this->monstre_->degat_monstre);?><br />
+					</div>
+				<?php endif;?>
+			</div>
+			<?php else : ?>
+				<?php if($this->fuite) :?>
+					<div><?php echo $this->escape($this->message_fuite); ?></div>
+					<form id="fnav" method="post" action="<?php echo $this->baseUrl; ?>/jeu/navigation/id/<?php echo $this->escape($this->avatar->id_avatar); ?>">
+						<input type="submit" name="retnav" value="Retour à la navigation" />
+					</form>
+				<?php else :?>
+					<?php if($this->avatar->hp_avatar > 0) : ?>
+					<div>VICTOIRE!</div>
+					<?php echo $this->escape($this->fin_message); ?><br />
+					Expérience gagnée : <?php echo $this->monstre->exp_monstre; ?><br />
+					Objet trouvé : <?php if($this->cpt > 0) : ?><br />
+					<ul>
+						<?php for($i = 0; $i < $this->cpt; $i++) :?>
+							<li><?php echo $this->dropsmonstre[$i] ?></li>
+						<?php endfor;?>
+					</ul>
+					<?php else :?>
+					Rien <br />
+					<?php endif; ?>
+					<form id="fnav" method="post" action="<?php echo $this->baseUrl; ?>/jeu/navigation/id/<?php echo $this->escape($this->avatar->id_avatar); ?>">
+						<input type="submit" name="retnav" value="Retour à la navigation" />
+					</form>
+					<?php else : ?>
+						<?php echo $this->escape($this->fin_message); ?><br />
+						Vous êtes mort !<br />
+						<form id="fres" method="post" action="<?php echo $this->baseUrl; ?>/jeu/resurrection/id/<?php echo $this->escape($this->avatar->id_avatar); ?>">
+							<input type="submit" name="res" value="Résurrection" />
+						</form>
+					<?php endif; ?>
+				<?php endif;?>
+			<?php endif; ?>
+		</fieldset>
+	</div>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

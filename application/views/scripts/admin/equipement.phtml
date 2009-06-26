@@ -1,0 +1,12 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_admin.phtml'); ?>
+
+	<div id="contenu">
+		<fieldset><legend>Gestion des équipements</legend>
+		<?php foreach( $this->equipement as $equipement) : ?>
+		<?php echo $this->escape($equipement->att_equipement); ?>
+		<?php endforeach; ?>
+		</fieldset>
+	</div>
+
+<?php echo $this->render('footer.phtml'); ?>

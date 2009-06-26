@@ -1,0 +1,40 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_admin.phtml'); ?>
+<div id="contenu">
+	<fieldset><legend>Gestion des &eacute;quipements</legend>
+		<a href="<?php echo $this->baseUrl ;?>/admin/addequipement">
+			<div class="bouton">Ajouter un objet</div>
+		</a>
+		<table class="admin" border="0" cellspacing="0" cellpadding="10">
+			<tr>
+				<th>Nom</th>
+				<th>mod_att</th>
+				<th>mod_attS</th>
+				<th>mod_def</th>
+				<th>mod_defS</th>
+				<th>Modifier</th>
+				<th>Supprimer</th>
+			</tr>
+			<?php foreach( $this->equipement as $equipement) : ?>
+			<tr class="ligne_item" id="<?php echo $equipement->id_equipement ;?>">
+				<td><?php echo $this->escape($this->obj->getName($equipement->id_equipement)); ?></td>
+				<td class="case"><?php echo $equipement->att_equipement; ?></td>
+				<td class="case"><?php echo $equipement->attsp_equipement; ?></td>
+				<td class="case"><?php echo $equipement->def_equipement; ?></td>
+				<td class="case"><?php echo $equipement->defsp_equipement; ?></td>
+				<td class="case">
+					<a href="<?php echo $this->baseUrl ;?>/admin/modifequipement/id/<?php echo $classe->id_classe ;?>">
+						<img src="<?php echo $this->baseUrl ;?>/public/images/modif.png" alt="modifier la classe..." />
+					</a>
+				</td>
+				<td class="case">
+					<a href="<?php echo $this->baseUrl ;?>/admin/supprequipement/id/<?php echo $equipement->id_equipement ;?>">
+						<img src="<?php echo $this->baseUrl ;?>/public/images/cross.png" alt="modifier le monstre..." />
+					</a>
+				</td>
+			</tr>
+			<?php endforeach; ?>
+		</table>
+	</fieldset>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

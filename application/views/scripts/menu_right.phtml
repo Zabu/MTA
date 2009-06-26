@@ -1,0 +1,54 @@
+<div id="menu_right">
+	<div class="menu_right_content">
+		<fieldset><legend>Carte du monde</legend>
+			<div class="minimap" id="minimap">
+				<table border="0" cellpadding="0" cellspacing="0" width="220px" height="220px">
+					<?php
+					for($i = 0;$i<20;$i++){
+							echo '<tr>
+							';
+							for($j=0; $j<20; $j++){
+								// récuperer num_colonne et num_ligne de la case
+								if($j == ($this->colonne - 1)  && $i == ($this->ligne - 1))
+									echo '<td width="11" height="11" style="background-color:red;opacity:0.8";>
+										</td>';
+								else
+									echo '<td width="11" height="11">
+									</td>';
+							}
+							echo'</tr>
+							';
+						}
+					?>
+				</table>
+			</div>
+		</fieldset>
+	</div>
+	<?php if ($this->navigation) : ?>
+	<div class="menu_right_content">
+		<fieldset><legend>Navigation</legend>
+			<table align="center">
+				<tr>
+					<td height="30" width="30"></td>
+					<td height="30" width="30">
+						<a href="<?php echo $this->baseUrl; ?>/jeu/haut/id/<?php echo $this->avatar->id_avatar ?>">
+							<img src="<?php echo $this->baseUrl; ?>/public/images/boutons_map/up2.gif" alt="Aller en haut" />
+						</a>
+					</td>
+					<td height="30" width="30"></td>
+				</tr>
+				<tr>
+					<td height="30" width="30"><a href="<?php echo $this->baseUrl; ?>/jeu/gauche/id/<?php echo $this->avatar->id_avatar ?>"><img src="<?php echo $this->baseUrl; ?>/public/images/boutons_map/left2.gif" alt="Aller à gauche" /></a></td>
+					<td height="30" width="30"><img src="<?php echo $this->baseUrl; ?>/public/images/map/map_seq/<?php echo $this->avatar->id_case; ?>.png" alt="Case courante" /></td>
+					<td height="30" width="30"><a href="<?php echo $this->baseUrl; ?>/jeu/droite/id/<?php echo $this->avatar->id_avatar ?>"><img src="<?php echo $this->baseUrl; ?>/public/images/boutons_map/right2.gif" alt="Aller à droite" /></a></td>
+				</tr>
+				<tr>
+					<td height="30" width="30"></td>
+					<td height="30" width="30"><a href="<?php echo $this->baseUrl; ?>/jeu/bas/id/<?php echo $this->avatar->id_avatar ?>"><img src="<?php echo $this->baseUrl; ?>/public/images/boutons_map/down2.gif" alt="Aller en bas" /></a></td>
+					<td height="30" width="30"></td>
+				</tr>
+			</table>
+		</fieldset>
+	</div>
+	<?php endif; ?>
+</div>

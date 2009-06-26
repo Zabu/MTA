@@ -1,0 +1,32 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_admin.phtml'); ?>
+<div id="contenu">
+	<fieldset><legend>Gestion des bonus de la classe <?php echo $this->classe->nom_classe; ?></legend>
+		<form action="<?php echo$this->baseUrl ;?>/admin/modifclasse/id/<?php echo $this->classe->id_classe; ?>" method="post" accept-charset="utf-8">
+		<table class="admin" border="0" cellspacing="0" cellpadding="10">
+			<tr>
+				<th>Nom</th>
+				<th>Att</th>
+				<th>Att Sp&eacute;</th>
+				<th>D&eacute;f</th>
+				<th>D&eacute;f Sp&eacute;</th>
+				<th>Vit</th>
+				<th>HP</th>
+				<th>MP</th>
+			</tr>
+			<tr>
+				<td><?php echo $this->classe->nom_classe; ?></td>
+				<td><input type="text" name="att" value="<?php echo $this->classe->att_classe;    ?>" id="att"></td>
+				<td><input type="text" name="attspe" value="<?php echo $this->classe->attsp_classe; ?>" id="attspe"></td>
+				<td><input type="text" name="def" value="<?php echo $this->classe->def_classe;    ?>" id="def"></td>
+				<td><input type="text" name="defspe" value="<?php echo $this->classe->defsp_classe; ?>" id="defspe"></td>
+				<td><input type="text" name="vit" value="<?php echo $this->classe->vit_classe;    ?>" id="vit"></td>
+				<td><input type="text" name="hp" value="<?php echo $this->classe->hp_classe;     ?>" id="hp"></td>
+				<td><input type="text" name="mp" value="<?php echo $this->classe->mp_classe;     ?>" id="mp"></td>
+			</tr>
+		</table>
+		<br /><input type="submit" value="Mettre &agrave; jour &rarr;">
+		</form>
+	</fieldset>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

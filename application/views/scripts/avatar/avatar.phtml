@@ -1,0 +1,48 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left.phtml'); ?>
+  	<div id="contenu">
+	<a id="newavatar" href="<?php echo $this->baseUrl ?>/avatar/creationavatar"><div id="new">Créer un nouvel avatar &rarr;</div></a>
+
+	<?php foreach($this->avatar as $avatar) : ?>
+	<div class="avatar">
+		<div class="img_avatar">
+			<img src="<?php echo $this->baseUrl ?>/public/images/avatar/<?php echo $this->escape($avatar->id_avatar); ?>.png" alt="" />
+		</div>
+		<table>
+			<tr>
+				<td>Nom :</td> 
+				<td><?php echo $this->escape($avatar->nom_avatar);?></td>
+			</tr>
+			<tr>
+				<td>Classe :</td> 
+				<td><?php echo $this->escape($this->classe->getNameById($avatar->id_classe)); ?>
+				</td>
+			</tr>
+			<tr>
+				<td>Niveau :</td>
+				<td><?php echo $this->escape($avatar->id_niveau);?></td>
+			</tr>
+			<tr>
+				<td>HP :</td>
+				<td><?php echo $this->escape($avatar->hp_avatar); ?>&nbsp;/&nbsp;<?php echo $this->escape($avatar->hpmax_avatar); ?></td>
+			</tr>
+			<tr>
+				<td>MP :</td>
+				<td><?php echo $this->escape($avatar->mp_avatar);?>&nbsp;/&nbsp;<?php echo $this->escape($avatar->mpmax_avatar); ?></td>
+			</tr>
+			<tr>
+				<td>Pièces d'or :</td>
+				<td><?php echo $this->escape($avatar->or_avatar);?></td>
+			</tr>
+			<tr>
+				<td>Exp :</td>
+				<td><?php echo $this->escape($avatar->exp_avatar);?></td>
+			</tr>
+		</table>
+		<a href="<?php echo $this->baseUrl; ?>/jeu/navigation/id/<?php echo $this->escape($avatar->id_avatar); ?>">Jouer</a>
+		<a href="<?php echo $this->baseUrl; ?>/avatar/modifieravatar/id/<?php echo $this->escape($avatar->id_avatar); ?>">Modifier</a>
+		<a href="<?php echo $this->baseUrl; ?>/avatar/supprimeravatar/id/<?php echo $this->escape($avatar->id_avatar);?>">Supprimer</a>
+	</div>
+	<?php endforeach; ?>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

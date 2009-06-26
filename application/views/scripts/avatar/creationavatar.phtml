@@ -1,0 +1,60 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left.phtml'); ?>
+<div id="contenu">
+	<form id="favatarcreation" method="post" enctype="multipart/form-data" action="<?php echo $this->baseUrl?>/avatar/<?php echo $this->action; ?>">
+		<fieldset><legend>Identité de l'avatar</legend>
+			<label>Pseudo <span class="info">(entre 3 à 20 caractères)</span> : 
+			<input type="text" name="avatarpseudo" value="
+			<?php if(isset($this->avatar['avatarpseudo'])) echo $this->avatar['avatarpseudo'];?>"/>
+			</label>
+			<?php if(isset($this->erreurs['avatarpseudo'])) echo $this->erreurs['avatarpseudo']; ?>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Choix de la classe de l'avatar</legend>
+			Vous avez le choix entre cinq classes d'avatar :<br />
+			<?php foreach($this->classe as $classe) : ?>
+				<label>
+				<input type="radio" name="classe" 
+				<?php 
+					if(isset($this->avatar['classe']))
+						if($this->avatar['classe'] == $classe->id_classe)
+							echo 'checked="checked"'
+				;?>
+				value="<?php echo $classe->id_classe; ?>" /> 
+				<?php echo $classe->nom_classe; ?> : <?php echo $classe->description_classe ;?>
+				</label><br />
+			<?php endforeach; ?>
+			<?php if(isset($this->erreurs['classe'])) echo $this->erreurs['classe']; ?>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Choix du village</legend>
+			Votre personnage sera affecté à un village. Vous avez le choix entre cinq villages :<br />
+			<div class="rb_village">
+			<?php foreach($this->ville as $ville) :?>
+				<input type="radio" name="ville" 
+				<?php 
+					if(isset($this->avatar['ville']))
+						if($this->avatar['ville'] == $ville->id_ville)
+							echo 'checked="checked"'
+				;?>
+				value="<?php echo $ville->id_ville; ?>" /> 
+				<?php echo $this->escape($ville->nom_ville); ?> : <?php echo $this->escape($ville->description_ville); ?><br />
+			<?php endforeach; ?>
+			</div>
+			<?php if(isset($this->erreurs['ville'])) echo $this->erreurs['ville']; ?>
+		</fieldset>
+		
+		<fieldset><legend>Portrait de l'avatar</legend>
+			L'image ne doit pas dépasser 100 ko.<br />
+			Elle ne doit pas non plus dépasser la taille de 100x100 pixels.<br />
+			L'extension autorisée est le .png.
+			<input name="fichier" type="file" /><br />
+			<?php if(isset($this->erreurs['portrait'])) echo $this->erreurs['portrait']; ?>
+		</fieldset>
+		<input name="creation" type="submit" value="Créer &rarr;" class="submit" />
+		
+	</form>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

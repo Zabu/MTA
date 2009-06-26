@@ -1,0 +1,21 @@
+<div id="menu_left">
+	<div class="menu_left_content">
+		<fieldset><legend>Statistiques</legend>
+			<ol id="classement">
+				<li id="premier">1. Newborn : 790 pts</li>
+				<li id="deuxieme">2. Calvaria : 171 pts</li>
+				<li id="troisieme">3. Zabu : 120 pts</li>
+			</ol>
+		</fieldset>
+		<fieldset><legend>Evènement</legend>
+			<p>Version bêta actuellement en phase de test</p>
+			<hr style="width:60px;" />
+			
+		</fieldset>
+		<?php if(isset($this->utilisateuradmin) && $this->user ): ?>
+			<?php if($this->utilisateuradmin->isAdmin($this->user->id_utilisateur)) : ?>
+				<a class="bouton" href="<?php echo $this->baseUrl;?>/admin/admin">Administration</a>
+			<?php endif;?>
+		<?php endif;?>
+	</div>
+</div>

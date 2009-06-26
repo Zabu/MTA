@@ -1,0 +1,53 @@
+<div id="menu_left">
+	<div class="menu_left_content">
+		<fieldset><legend>Avatar</legend>
+			<img src="<?php echo $this->baseUrl ?>/public/images/avatar/<?php echo $this->avatar->id_avatar; ?>.png" alt="Portrait de <?php echo $this->avatar->nom_avatar ?>" />
+			<form name="fdirstat" method="post" action="<?php echo $this->baseUrl ?>/jeu/stats/id/<?php echo $this->avatar->id_avatar; ?>">
+				<input type="submit" name="dirstat" value="Statut"/>
+			</form>
+			<table>
+				<tr>
+					<td>Nom :</td> 
+					<td><?php echo $this->avatar->nom_avatar;?></td>
+				</tr>
+				<tr>
+					<td>Classe :</td> 
+					<td><?php echo $this->classe; ?>
+					</td>
+				</tr>
+				<tr>
+					<td>Niveau :</td>
+					<td><?php echo $this->avatar->id_niveau;?></td>
+				</tr>
+				<tr>
+					<td>HP :</td>
+					<td><?php echo $this->avatar->hp_avatar; ?>&nbsp;/&nbsp;<?php echo $this->avatar->hpmax_avatar; ?></td>
+				</tr>
+				<tr>
+					<td>MP :</td>
+					<td><?php echo $this->avatar->mp_avatar;?>&nbsp;/&nbsp;<?php echo $this->avatar->mpmax_avatar; ?></td>
+				</tr>
+				<tr>
+					<td>Or :</td>
+					<td><?php echo $this->avatar->or_avatar;?></td>
+				</tr>
+				<tr>
+					<td>Exp :</td>
+					<td><?php echo $this->avatar->exp_avatar;?></td>
+				</tr>
+			</table>
+		</fieldset>
+		<fieldset><legend>Equipement</legend>
+			<form name="fdirinvent" method="post" action="<?php echo $this->baseUrl ?>/jeu/inventaire/id/<?php echo $this->avatar->id_avatar; ?>">
+				<input type="submit" name="dirinvent" value="Inventaire"/>
+			</form>
+			<ul class="equip">
+				<li><strong>Arme :<br /><img src="/PPD/mta_lou/public/images/illustrations/item/baton6.png" alt="" /> </strong><?php if(isset($this->arme_->nom_objet)) echo $this->arme_->nom_objet; else echo 'Rien'; ?></li>
+				<li><strong>Armure :<br /><img src="/PPD/mta_lou/public/images/illustrations/item/bouclier16.png" alt="" /> </strong><?php if(isset($this->armure_->nom_objet)) echo $this->armure_->nom_objet; else echo 'Rien'; ?></li>
+			</ul>
+		</fieldset>
+		<fieldset id="quete"><legend>Qu&ecirc;te</legend>
+			Qu&ecirc;te
+		</fieldset>
+	</div>
+</div>

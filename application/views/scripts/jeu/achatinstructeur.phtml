@@ -1,0 +1,118 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_avatar.phtml'); ?>
+<!-- <?php// echo $this->render('menu_right_combat.phtml'); ?> -->
+<?php echo $this->render('menu_right.phtml'); ?>
+<div id="contenu">
+	<fieldset><legend><?php echo $this->instructeur->nom_pnj;?></legend>
+		<div class="illustration">
+			<img src="<?php echo $this->baseUrl;?>/public/images/illustrations/instructeur/<?php echo $this->instructeur->id_pnj;?>.png" alt=""/>
+		</div>
+	</fieldset>
+	<fieldset><legend>Que voulez vous faire ?</legend>
+	<!--<input type="button" value="suivant" onclick="getDonnees()"/>-->
+	<div id="blablamarchand" style="left:200px;">
+	</div>   
+	
+	<div id="tableau" style="left:200px;">
+	</div> 	
+
+	</fieldset>
+
+
+	
+	<script type="text/javascript">
+	var i=1;
+	var requete;
+	getDonnees();
+	function getRequete(){ 
+	var result = requete; 
+		if (result == null) { 
+			if (window.XMLHttpRequest) {  //Navigateurtype Mozilla 
+			result = new XMLHttpRequest(); 
+		} 
+		else 
+			if (window.ActiveXObject) {  // Internet Explorer 
+			result = new ActiveXObject("Microsoft.XMLHTTP"); 
+		} 
+	} 
+	return result; 
+}
+
+function retour(){
+	window.location.href="<?php echo $this->baseUrl; ?>/Jeu/navigation/id/<?php echo $this->avatar->id_avatar; ?>";
+	}
+
+function verifAchat(){
+	var verif = confirm('êtes-vous sûr ?');
+	if (verif){
+	}
+}
+
+function lancerRequeteAJAX(){
+	requete=getRequete();
+	var nomFonct = onReceiveAJAX;
+	if (requete!= null){
+		var corps;
+		
+		requete.open("POST", "<?php echo "$this->baseUrl"; ?>/Texteinstructeur/<?php echo $this->instructeur->nom_pnj;?>", true); 
+		requete.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+		requete.onreadystatechange= nomFonct; 
+		requete.send(corps); 
+		return true;
+	}
+	else
+		alert("requête impossible à former sur ce navigateur");
+	return false;
+}
+
+function onReceiveAJAX(){
+	if (requete.readyState== 4 && requete.status== 200) {
+		var t =  requete.responseText;
+		var textdata=eval('('+t+')');
+			
+		 switch(i)
+		  {
+			 case 1:
+					$('blablamarchand').innerHTML=textdata.acc_marchand1;
+						break;
+			 case 2:$('blablamarchand').innerHTML=textdata.acc_marchand2;
+					$('tableau').innerHTML="<table border='1px' class='admin' cellspacing='0' cellpadding='10'>"
+												+"<tr>"
+													+"<th>Compétence</th>"
+													+"<th>Prix</th>"
+													+"<th>Commentaire</th>"
+													+"<th>Acheter</th>"
+												+"</tr>"
+												+"<?php foreach( $this->competence as $competence) : ?>"
+												+"<tr>"
+													+"<td><?php echo $competence->nom_competence; ?></td>"
+													+"<td><?php echo $competence->prix_competence; ?></td>"
+													+"<td></td>"
+													+"<td><img src='<?php echo $this->baseUrl ;?>/public/images/or.png' alt='acheter des compétences' onMouseOver=\"this.style.cursor=\'pointer\'\" onClick='verifAchat();'/></td>"
+												+"</tr><?php endforeach; ?>"
+											+"</table>"
+											+"<input type='button' value='Quitter' onClick='getDonnees()' style='margin-left:18px;margin-top:3px;'/>";
+
+						break;
+			 case 3:$('tableau').innerHTML="";
+					$('blablamarchand').innerHTML=textdata.acc_marchand4;
+						break;
+		  }
+		 i++;
+	}
+}
+
+
+	//raccourci d'écriture pour la fonction document.getElementById
+	function $(id)
+	{
+		return document.getElementById(id);
+	}
+	//la fonction de récupération des données en AJAX
+	function getDonnees()
+	{
+		lancerRequeteAJAX();
+	}
+	</script>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

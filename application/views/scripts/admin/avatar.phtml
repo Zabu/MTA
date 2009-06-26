@@ -1,0 +1,26 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_admin.phtml'); ?>
+
+<div id="contenu">
+	<fieldset><legend>Gestion des avatars</legend>
+		<table class="admin" border="0" cellspacing="0" cellpadding="10">
+			<tr>
+				<th>Nom</th>
+				<th>Joueur</th>
+				<th>Niveau</th>
+				<th>Supprimer</th>
+			</tr>
+			<?php foreach( $this->avatar as $avatar) : ?>
+			<tr class="ligne_item">
+				<td><?php echo $avatar->nom_avatar; ?></td>
+				<td class="case"><?php echo $this->utilisateur->findById($avatar->id_utilisateur)->login_utilisateur ;?></td>
+				<td class="case"><?php echo $avatar->id_niveau; ?></td>
+				<td class="case">
+					<a href="<?php echo $this->baseUrl ;?>/admin/supprimeravatar/id/<?php echo $avatar->id_avatar; ?>"><img src="<?php echo $this->baseUrl; ?>/public/images/cross.png" alt="Supprimer" /></a>
+				</td>
+			</tr>
+			<?php endforeach; ?>
+		</table>
+	</fieldset>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

@@ -1,0 +1,42 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_avatar.phtml'); ?>
+<?php echo $this->render('menu_right.phtml'); ?>
+			<div id="contenu" class="contenu_navigation">
+				<fieldset><legend>Vue</legend>
+					<div class="illustration">
+						<img src="<?php echo $this->baseUrl;?>/public/images/illustrations/zone/<?php echo $this->zone->id_zone; ?>.jpg" alt=""/>
+					</div>
+				</fieldset>
+				<div class="choix">
+					<fieldset><legend>Actions</legend>
+						<?php if($this->resurrection) : ?>
+							Vous êtes mort !<br />
+							<form id="fres" method="post" action="<?php echo $this->baseUrl; ?>/jeu/resurrection/id/<?php echo $this->escape($this->avatar->id_avatar); ?>">
+								<input type="submit" name="res" value="Résurrection" />
+							</form>
+						<?php endif; ?>
+						<?php if($this->chasse) :?>
+							<form id="fchasse" method="post" action="<?php echo $this->baseUrl; ?>/jeu/chasse/id/<?php echo $this->escape($this->avatar->id_avatar); ?>">
+								<input type="submit" name="chasse" value="Chasser" />
+							</form>
+						<?php endif;?>
+						<?php if($this->instructeur) :?>
+							<form id="finstructeur" method="post" action="<?php echo $this->baseUrl; ?>/jeu/achatinstructeur/id/<?php echo $this->escape($this->avatar->id_avatar); ?>/id_instructeur/<?php echo $this->escape($this->instructeur); ?>">
+								<input type="submit" name="Instructeur" value="Instructeur" />
+							</form>
+						<?php endif;?>
+						<?php if($this->marchand) :?>
+							<form id="fmarchanda" method="post" action="<?php echo $this->baseUrl; ?>/jeu/achat/id/<?php echo $this->escape($this->avatar->id_avatar); ?>/id_marchand/<?php echo $this->escape($this->marchand); ?>">
+								<input type="submit" name="Achat" value="Marchand" />
+							</form>
+							</form>
+						<?php endif;?>
+						<?php if($this->healing) : ?>
+							<form id="fheal" method="post" action="<?php echo $this->baseUrl; ?>/jeu/soins/id/<?php echo $this->escape($this->avatar->id_avatar); ?>?>">
+								<input type="submit" name="Soins" value="Soins" />
+							</form>
+						<?php endif;?>
+					</fieldset>
+				</div>
+			</div>
+<?php echo $this->render('footer.phtml'); ?>

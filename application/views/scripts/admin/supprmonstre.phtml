@@ -1,0 +1,19 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_admin.phtml'); ?>
+<div id="contenu">
+	<?php if(isset($this->monstre)) :?>
+	<form action="<?php echo $this->baseUrl ?>/admin/supprmonstre" method="post">
+		<p>&Ecirc;tes-vous certain de vouloir supprimer
+		  '<?php echo $this->monstre->nom_monstre; ?>' ?
+		</p>
+		<div>
+		  <input type="hidden" name="id" value="<?php echo $this->monstre->id_monstre ;?>" />
+		  <input type="submit" name="del" value="Oui" />
+		  <input type="submit" name="del" value="Non" />
+		</div>
+	</form>
+	<?php else: ?>
+	<p>Monstre Introuvable</p>
+	<?php endif;?>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

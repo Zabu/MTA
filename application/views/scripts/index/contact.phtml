@@ -1,0 +1,19 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left.phtml'); ?>
+	    	<div id="contenu">
+				<h1>Nous contacter</h1>
+				<fieldset><legend>Via ces adresses</legend>
+					zabu@free.fr
+				</fieldset>
+				<fieldset><legend>Via le formulaire d'envoi de mail</legend>
+					<form id="fcontact" method="post" action="<?php echo $this->baseUrl ?>/index/contact">
+						<label><h4>Votre Email :</h4><input type="text" name="mail" /><br /></label>
+						<label><h4>Sujet :</h4><input type="text" name="sujet" maxlength="50" /><br /></label>
+						<label><h4>Message :</h4>
+							<textarea name="message" rows="10" cols="70" maxlength="800"></textarea><br /><span class="info">Le message est limité à 800 caractères.</span><br /><br />
+						</label>
+						<input type="submit" name="envoyermail" value="Envoyer" />
+					</form>
+				</fieldset>
+	    	</div>
+<?php echo $this->render('footer.phtml'); ?>

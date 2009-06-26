@@ -1,0 +1,16 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left.phtml'); ?>
+<div id="contenu">
+	<form enctype="multipart/form-data" action="<?php echo $this->baseUrl?>/avatar/modifieravatar" method="post">
+		<fieldset><legend>Portrait de l'avatar</legend>
+			L'image ne doit pas dépasser 100 ko.<br />
+			Elle ne doit pas non plus dépasser la taille de 100x100 pixels.<br />
+			L'extension autorisée est le .png.
+			<input name="fichier" type="file" /><br />
+			<?php if(isset($this->erreurs['portrait'])) echo $this->erreurs['portrait']; ?>
+		</fieldset>
+		<input type="hidden" name="id" value="<?php if(isset($this->avatar['id'])) echo $this->avatar['id'];?>" />
+		<input name="creation" type="submit" value="Mettre à jour l'avatar &rarr;" class="submit" />
+	</form>
+</div>
+<?php echo $this->render('footer.phtml'); ?>

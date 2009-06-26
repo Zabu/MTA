@@ -1,0 +1,42 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left.phtml'); ?>
+
+	<div id="contenu">
+		<form id="finscription" method="post" action="<?php echo $this->baseUrl."/utilisateur/".$this->action; ?>">
+			<fieldset><legend>Votre profil</legend>
+				<table>
+					<tr><td>Login <span class="info">(non modifiable)</span> : </td>
+						<td/><input type="text" name="login" disabled="disabled" value="<?php echo $this->user->login_utilisateur ?>" /></td>
+					</tr>
+					<tr><td>Ancien mot de passe: </td>
+						<td><input type="password" name="pass" /> 
+						<?php if(isset($this->erreurs["pass"])) echo $this->erreurs["pass"]; ?></td>
+					</tr>
+					<tr><td>Nouveau mot de passe <span class="info">(entre 6 et 15 caractères)</span> : </td>
+						<td><input type="password" name="pass1" /> 
+						<?php if(isset($this->erreurs["pass1"])) echo $this->erreurs["pass1"]; ?></td>
+					</tr>
+					<tr><td>Confirmation mot de passe :</td>
+						<td><input type="password" name="pass2" /> 
+						<?php if(isset($this->erreurs["pass2"])) echo $this->erreurs["pass2"]; ?></td>
+					</tr>
+					<tr><td>E-mail <span class="info">(non modifiable)</span> : </td>
+						<td><input type="text" name="mail" disabled="disabled" value="<?php echo $this->user->mail_utilisateur ?>" /></td>
+					</tr>
+					<tr><td>Nouvel E-mail <span class="info">(un email valide est nécessaire)</span> : </td>
+						<td><input type="text" name="mail1" value="" /> 
+						<?php if(isset($this->erreurs["mail1"])) echo $this->erreurs["mail1"]; ?></td>
+					</tr>
+					<tr><td>Confirmation de l'email :</td>
+						<td><input type="text" name="mail2" /> 
+						<?php if(isset($this->erreurs["mail2"])) echo $this->erreurs["mail2"]; ?></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><input class="submit" type="submit" name="submit" value="Mettre à jour le profil" /></td>
+					</tr>
+				</table>
+			</fieldset>
+		</form>
+	</div>
+
+<?php echo $this->render('footer.phtml'); ?>

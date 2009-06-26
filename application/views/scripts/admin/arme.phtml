@@ -1,0 +1,12 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_admin.phtml'); ?>
+
+	<div id="contenu">
+		<fieldset><legend>Gestion des classes d'avatars</legend>
+		<?php foreach( $this->classe as $classe) : ?>
+		<?php echo $this->escape($classe->nom_classe); ?>
+		<?php endforeach; ?>
+		</fieldset>
+	</div>
+
+<?php echo $this->render('footer.phtml'); ?>

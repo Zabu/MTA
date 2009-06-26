@@ -1,0 +1,19 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left.phtml'); ?>
+	    	<div id="contenu">
+				<?php if (isset($this->avatar)) :?>
+				<form action="<?php echo $this->baseUrl ?>/avatar/supprimeravatar" method="post">
+					<p>&Ecirc;tes-vous certain de vouloir supprimer
+					  '<?php echo $this->escape($this->avatar->nom_avatar); ?>' ?
+					</p>
+					<div>
+					  <input type="hidden" name="id" value="<?php echo $this->avatar->id_avatar ;?>" />
+					  <input type="submit" name="del" value="Oui" />
+					  <input type="submit" name="del" value="Non" />
+					</div>
+				</form>
+				<?php else: ?>
+				<p>Avatar Introuvable</p>
+				<?php endif;?>
+			</div>
+<?php echo $this->render('footer.phtml'); ?>

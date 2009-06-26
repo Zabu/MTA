@@ -1,0 +1,12 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_admin.phtml'); ?>
+
+	<div id="contenu">
+		<a class="admin" href="<?php echo $this->baseUrl;?>/admin/utilisateur">G&eacute;rer les utilisateurs</a>
+		<a class="admin" href="<?php echo $this->baseUrl;?>/admin/avatar">G&eacute;rer les avatars</a>
+		<a class="admin" href="<?php echo $this->baseUrl;?>/admin/classe">G&eacute;rer les classes</a>
+		<a class="admin" href="<?php echo $this->baseUrl;?>/admin/objet">G&eacute;rer les objets</a>
+		<a class="admin" href="<?php echo $this->baseUrl;?>/admin/monstre">G&eacute;rer les monstres</a>
+	</div>
+
+<?php echo $this->render('footer.phtml'); ?>

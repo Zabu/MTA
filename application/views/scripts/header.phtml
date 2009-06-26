@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+	<head>
+		<title><?php echo $this->escape($this->title); ?></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $this->baseUrl;?>/public/styles/styles.css" />
+		<link rel="shortcut icon" href="<?php echo $this->baseUrl;?>/public/images/favicon.ico"/>
+		<script type="text/javascript" src="<?php echo $this->baseUrl;?>/public/scripts/jquery.js"></script>
+		<script type="text/javascript" src="<?php echo $this->baseUrl;?>/public/scripts/menu.js"></script>
+	</head>
+	<body>
+		<div id="bord">
+			<div id="login">
+				<?php if($this->user) :?>
+					<form id="flogout" method="post" action="<?php echo $this->baseUrl ?>/auth/logout">
+						Bonjour, <?php echo $this->escape($this->user->login_utilisateur) ?>.&nbsp;&nbsp;&nbsp;
+						<input type="submit" name="submitlogout" value="Déconnexion" />
+					</form>
+				<?php else :?>
+					<form id="flogin" method="post" action="<?php echo $this->baseUrl;?>/auth/login">
+						<label>Login : <input type="text" name="username"/></label>
+						&nbsp;&nbsp;&nbsp; <label>Mot de passe : <input type="password" name="password" /></label>
+						<input type="submit" name="submitlogin" value="Connexion" />
+					</form>
+				<?php endif; ?>
+			</div>
+			<div id="langues">
+				<img src="<?php echo $this->baseUrl;?>/public/images/fr.gif" alt="français"/>&nbsp;&nbsp;&nbsp;<img src="<?php echo $this->baseUrl;?>/public/images/gb.gif" alt="english" />
+			</div>
+		</div>
+		<div id="conteneur">
+			<div id="header">
+			</div>
+			<div id="menu_horizontal" class="menu_horizontal">
+				<ul>
+					<li><a href="<?php echo $this->baseUrl;?>/index">Accueil</a></li>
+					<?php if(!$this->user) :?>
+						<li><a href="<?php echo $this->baseUrl;?>/index/inscription">Inscription</a></li>
+					<?php else :?>
+						<li><a href="<?php echo $this->baseUrl;?>/utilisateur/gestioncompte">Gérer votre compte</a></li>
+						<li><a href="<?php echo $this->baseUrl;?>/avatar/avatar">Gérer vos Avatars</a></li>
+					<?php endif; ?>
+					<li><a href="<?php echo $this->baseUrl;?>/index/presentation">Présentation</a></li>
+					<li><a href="<?php echo $this->baseUrl;?>/index/contact">Contact</a></li>
+				</ul>
+			</div>

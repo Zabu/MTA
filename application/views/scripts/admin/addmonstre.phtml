@@ -1,0 +1,72 @@
+<?php echo $this->render('header.phtml'); ?>
+<?php echo $this->render('menu_left_admin.phtml'); ?>
+<div id="contenu">
+	<fieldset><legend>Ajouter un monstre</legend>
+		<form action="<?php echo $this->baseUrl ;?>/admin/addmonstre" method="post" accept-charset="utf-8">
+		<label><h4>Nom du monstre : </h4><input type="text" name="nom" id="nom" value="<?php if(isset($this->monstre['nom'])) echo $this->monstre['nom'];?>" />
+		<?php if(isset($this->erreur["nom"])) echo $this->erreur["nom"]; ?>
+		</label>
+		
+		<label><h4>Statistiques : </h4>
+		<table class="admin" border="0" cellspacing="0" cellpadding="10">
+			<tr>
+				<th>Exp</th>
+				<th>Niv</th>
+				<th>HP</th>
+				<th>MP</th>
+				<th>Att</th>
+				<th>AttSpe</th>
+				<th>Def</th>
+				<th>DefSpe</th>
+				<th>Vit</th>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" name="exp" id="exp" value="<?php if(isset($this->monstre['exp'])) echo $this->monstre['exp'];?>"/>
+				</td>
+				<td>
+					<input type="text" name="niv" id="niv" value="<?php if(isset($this->monstre['niv'])) echo $this->monstre['niv'];?>"/>
+				</td>
+				<td>
+					<input type="text" name="hp" id="hp" value="<?php if(isset($this->monstre['hp'])) echo $this->monstre['hp'];?>"/>
+				</td>
+				<td>
+					<input type="text" name="mp" id="mp" value="<?php if(isset($this->monstre['mp'])) echo $this->monstre['mp'];?>"/>
+				</td>
+				<td>
+					<input type="text" name="att" id="att" value="<?php if(isset($this->monstre['att'])) echo $this->monstre['att'];?>"/>
+				</td>
+				<td>
+					<input type="text" name="attspe" id="attspe" value="<?php if(isset($this->monstre['attspe'])) echo $this->monstre['attspe'];?>"/>
+				</td>
+				<td>
+					<input type="text" name="def" id="def"  value="<?php if(isset($this->monstre['def'])) echo $this->monstre['def'];?>"/>
+				</td>
+				<td>
+					<input type="text" name="defspe" id="defspe" value="<?php if(isset($this->monstre['defspe'])) echo $this->monstre['defspe'];?>"/>
+				</td>
+				<td>
+					<input type="text" name="vit" id="vit" value="<?php if(isset($this->monstre['vit'])) echo $this->monstre['vit'];?>"/>
+				</td>
+			</tr>
+		</table>
+				<?php if(isset($this->erreur['exp'])) echo $this->erreur['exp'].'<br />'; ?>
+				<?php if(isset($this->erreur['niv'])) echo $this->erreur['niv'].'<br />'; ?>
+				<?php if(isset($this->erreur['hp'])) echo $this->erreur['hp'].'<br />'; ?>
+				<?php if(isset($this->erreur['mp'])) echo $this->erreur['mp'].'<br />'; ?>
+				<?php if(isset($this->erreur['att'])) echo $this->erreur['att'].'<br />'; ?>
+				<?php if(isset($this->erreur['attspe'])) echo $this->erreur['attspe'].'<br />'; ?>
+				<?php if(isset($this->erreur['def'])) echo $this->erreur['def'].'<br />'; ?>
+				<?php if(isset($this->erreur['defspe'])) echo $this->erreur['defspe'].'<br />'; ?>
+				<?php if(isset($this->erreur['vit'])) echo $this->erreur['vit'].'<br />'; ?>
+		</label>
+		
+		<label><h4>Description : </h4>
+		<textarea name="description" rows="4" cols="40" maxlength="500"><?php if(isset($this->monstre['description'])) echo $this->monstre['description'];?></textarea>
+		<?php if(isset($this->erreur['description'])) echo $this->erreur['description']; ?>
+		<br /><br />
+		<input type="submit" value="Cr&eacute;er le monstre &rarr;">
+		</form>
+	</fieldset>
+</div>
+<?php echo $this->render('footer.phtml'); ?>
